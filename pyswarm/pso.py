@@ -19,7 +19,7 @@ def _cons_f_ieqcons_wrapper(f_ieqcons, args, kwargs, x):
 def pso(func, lb, ub, ieqcons=[], f_ieqcons=None, args=(), kwargs={}, 
         swarmsize=100, omega=0.5, phip=0.5, phig=0.5, maxiter=100, 
         minstep=1e-8, minfunc=1e-8, debug=False, processes=1,
-        particle_output=False):
+        particle_output=False, verbose = False):
     """
     Perform a particle swarm optimization (PSO)
    
@@ -223,8 +223,9 @@ def pso(func, lb, ub, ieqcons=[], f_ieqcons=None, args=(), kwargs={},
         if debug:
             print('Best after iteration {:}: {:} {:}'.format(it, g, fg))
         it += 1
-
-    print('Stopping search: maximum iterations reached --> {:}'.format(maxiter))
+    
+    if verbose:
+        print('Stopping search: maximum iterations reached --> {:}'.format(maxiter))
     
     if not is_feasible(g):
         print("However, the optimization couldn't find a feasible design. Sorry")
